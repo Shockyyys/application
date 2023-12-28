@@ -1,0 +1,130 @@
+<html>
+<head>
+<title>CinemaSystem.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #7a7e85;}
+.s5 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+CinemaSystem.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">ArrayList</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">CinemaSystem </span><span class="s2">{</span>
+    <span class="s0">private </span><span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">User</span><span class="s2">&gt; </span><span class="s1">users </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+    <span class="s0">private </span><span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">Movie</span><span class="s2">&gt; </span><span class="s1">movies </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+    <span class="s0">private </span><span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">Ticket</span><span class="s2">&gt; </span><span class="s1">soldTickets </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+    <span class="s0">private int </span><span class="s1">ticketIdCounter </span><span class="s2">= </span><span class="s3">1</span><span class="s2">;</span>
+
+    <span class="s4">// Getter methods</span>
+    <span class="s0">public </span><span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">User</span><span class="s2">&gt; </span><span class="s1">getUsers</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">users</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">Movie</span><span class="s2">&gt; </span><span class="s1">getMovies</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">movies</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">addMovie</span><span class="s2">(</span><span class="s1">String title</span><span class="s2">, </span><span class="s1">String genre</span><span class="s2">, </span><span class="s0">int </span><span class="s1">ageRestriction</span><span class="s2">, </span><span class="s0">int </span><span class="s1">duration</span><span class="s2">, </span><span class="s0">int </span><span class="s1">releaseYear</span><span class="s2">, </span><span class="s1">String director</span><span class="s2">) {</span>
+        <span class="s1">Movie movie </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Movie</span><span class="s2">(</span><span class="s1">title</span><span class="s2">, </span><span class="s1">genre</span><span class="s2">, </span><span class="s1">ageRestriction</span><span class="s2">, </span><span class="s1">duration</span><span class="s2">, </span><span class="s1">releaseYear</span><span class="s2">, </span><span class="s1">director</span><span class="s2">);</span>
+        <span class="s1">movies</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">movie</span><span class="s2">);</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Movie added: &quot; </span><span class="s2">+ </span><span class="s1">title</span><span class="s2">);</span>
+        <span class="s4">// Display the title in the confirmation message</span>
+    <span class="s2">}</span>
+
+
+    <span class="s0">public void </span><span class="s1">showAllMovies</span><span class="s2">() {</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Available Movies:&quot;</span><span class="s2">);</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">Movie movie </span><span class="s2">: </span><span class="s1">movies</span><span class="s2">) {</span>
+            <span class="s1">String movieInfo </span><span class="s2">= </span><span class="s1">String</span><span class="s2">.</span><span class="s1">format</span><span class="s2">(</span><span class="s5">&quot;'%s' - %s, dir. %s, %d minutes, %d, %d+&quot;</span><span class="s2">,</span>
+                    <span class="s1">movie</span><span class="s2">.</span><span class="s1">getTitle</span><span class="s2">(), </span><span class="s1">movie</span><span class="s2">.</span><span class="s1">getGenre</span><span class="s2">(), </span><span class="s1">movie</span><span class="s2">.</span><span class="s1">getDirector</span><span class="s2">(),</span>
+                    <span class="s1">movie</span><span class="s2">.</span><span class="s1">getDuration</span><span class="s2">(), </span><span class="s1">movie</span><span class="s2">.</span><span class="s1">getReleaseYear</span><span class="s2">(), </span><span class="s1">movie</span><span class="s2">.</span><span class="s1">getAgeRestriction</span><span class="s2">());</span>
+
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s1">movieInfo</span><span class="s2">);</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+
+    <span class="s0">public void </span><span class="s1">addUser</span><span class="s2">(</span><span class="s1">String name</span><span class="s2">, </span><span class="s0">int </span><span class="s1">age</span><span class="s2">, </span><span class="s0">double </span><span class="s1">balance</span><span class="s2">, </span><span class="s0">boolean </span><span class="s1">isStudent</span><span class="s2">) {</span>
+        <span class="s1">User user </span><span class="s2">= </span><span class="s0">new </span><span class="s1">User</span><span class="s2">(</span><span class="s1">name</span><span class="s2">, </span><span class="s1">age</span><span class="s2">, </span><span class="s1">balance</span><span class="s2">, </span><span class="s1">isStudent</span><span class="s2">);</span>
+        <span class="s1">users</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">user</span><span class="s2">);</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;User added. Hello, &quot; </span><span class="s2">+ </span><span class="s1">name </span><span class="s2">+ </span><span class="s5">&quot;!&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private double </span><span class="s1">calculateTicketPrice</span><span class="s2">(</span><span class="s1">User user</span><span class="s2">, </span><span class="s1">Movie movie</span><span class="s2">) {</span>
+        <span class="s0">int </span><span class="s1">basePrice </span><span class="s2">= </span><span class="s3">15</span><span class="s2">;  </span><span class="s4">// Regular ticket price</span>
+        <span class="s0">int </span><span class="s1">childDiscountAge </span><span class="s2">= </span><span class="s3">13</span><span class="s2">;</span>
+        <span class="s0">int </span><span class="s1">studentDiscountPrice </span><span class="s2">= </span><span class="s3">12</span><span class="s2">;</span>
+
+        <span class="s4">// Check user's age and student status to determine ticket price</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">user</span><span class="s2">.</span><span class="s1">getAge</span><span class="s2">() &lt; </span><span class="s1">childDiscountAge</span><span class="s2">) {</span>
+            <span class="s0">return </span><span class="s3">9.0</span><span class="s2">;  </span><span class="s4">// Child discount</span>
+        <span class="s2">} </span><span class="s0">else if </span><span class="s2">(</span><span class="s1">user</span><span class="s2">.</span><span class="s1">isStudent</span><span class="s2">()) {</span>
+            <span class="s0">return </span><span class="s1">studentDiscountPrice</span><span class="s2">;  </span><span class="s4">// Student discount</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s0">return </span><span class="s1">basePrice</span><span class="s2">;  </span><span class="s4">// Regular price</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">buyTicket</span><span class="s2">(</span><span class="s1">User user</span><span class="s2">, </span><span class="s1">Movie movie</span><span class="s2">, </span><span class="s1">String date</span><span class="s2">, </span><span class="s1">String time</span><span class="s2">) {</span>
+        <span class="s0">double </span><span class="s1">ticketPrice </span><span class="s2">= </span><span class="s1">calculateTicketPrice</span><span class="s2">(</span><span class="s1">user</span><span class="s2">, </span><span class="s1">movie</span><span class="s2">);</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">user</span><span class="s2">.</span><span class="s1">getBalance</span><span class="s2">() &gt;= </span><span class="s1">ticketPrice</span><span class="s2">) {</span>
+            <span class="s1">Ticket ticket </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Ticket</span><span class="s2">(</span><span class="s1">ticketIdCounter</span><span class="s2">++, </span><span class="s1">movie</span><span class="s2">.</span><span class="s1">getTitle</span><span class="s2">(), </span><span class="s1">date</span><span class="s2">, </span><span class="s1">time</span><span class="s2">, </span><span class="s1">ticketPrice</span><span class="s2">);</span>
+            <span class="s1">soldTickets</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">ticket</span><span class="s2">);</span>
+            <span class="s1">user</span><span class="s2">.</span><span class="s1">addToOrderHistory</span><span class="s2">(</span><span class="s1">ticket</span><span class="s2">);</span>
+            <span class="s1">user</span><span class="s2">.</span><span class="s1">setBalance</span><span class="s2">(</span><span class="s1">user</span><span class="s2">.</span><span class="s1">getBalance</span><span class="s2">() - </span><span class="s1">ticketPrice</span><span class="s2">);</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Ticket purchased successfully!&quot;</span><span class="s2">);</span>
+
+            <span class="s4">// Display the new balance of the user</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;New Balance: $&quot; </span><span class="s2">+ </span><span class="s1">user</span><span class="s2">.</span><span class="s1">getBalance</span><span class="s2">());</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Insufficient funds. Unable to purchase a ticket.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">showUserOrderHistory</span><span class="s2">() {</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">currentUser </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Order History for &quot; </span><span class="s2">+ </span><span class="s1">currentUser</span><span class="s2">.</span><span class="s1">getName</span><span class="s2">() + </span><span class="s5">&quot;:&quot;</span><span class="s2">);</span>
+            <span class="s0">for </span><span class="s2">(</span><span class="s1">Ticket ticket </span><span class="s2">: </span><span class="s1">currentUser</span><span class="s2">.</span><span class="s1">getOrderHistory</span><span class="s2">()) {</span>
+                <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Ticket ID: &quot; </span><span class="s2">+ </span><span class="s1">ticket</span><span class="s2">.</span><span class="s1">getId</span><span class="s2">() +</span>
+                        <span class="s5">&quot;, Movie: &quot; </span><span class="s2">+ </span><span class="s1">ticket</span><span class="s2">.</span><span class="s1">getMovieName</span><span class="s2">() +</span>
+                        <span class="s5">&quot;, Date: &quot; </span><span class="s2">+ </span><span class="s1">ticket</span><span class="s2">.</span><span class="s1">getDate</span><span class="s2">() +</span>
+                        <span class="s5">&quot;, Time: &quot; </span><span class="s2">+ </span><span class="s1">ticket</span><span class="s2">.</span><span class="s1">getTime</span><span class="s2">() +</span>
+                        <span class="s5">&quot;, Price: $&quot; </span><span class="s2">+ </span><span class="s1">ticket</span><span class="s2">.</span><span class="s1">getPrice</span><span class="s2">());</span>
+            <span class="s2">}</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;No user selected. Please select a user first.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private </span><span class="s1">User currentUser</span><span class="s2">;  </span><span class="s4">// Add this field to store the current user</span>
+
+    <span class="s0">public </span><span class="s1">User getCurrentUser</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">currentUser</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">User getUserByName</span><span class="s2">(</span><span class="s1">String name</span><span class="s2">) {</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">User user </span><span class="s2">: </span><span class="s1">users</span><span class="s2">) {</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">user</span><span class="s2">.</span><span class="s1">getName</span><span class="s2">().</span><span class="s1">equalsIgnoreCase</span><span class="s2">(</span><span class="s1">name</span><span class="s2">)) {</span>
+                <span class="s0">return </span><span class="s1">user</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+        <span class="s0">return null</span><span class="s2">; </span><span class="s4">// User not found</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setCurrentUser</span><span class="s2">(</span><span class="s1">User user</span><span class="s2">) {</span>
+        <span class="s1">currentUser </span><span class="s2">= </span><span class="s1">user</span><span class="s2">;</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
